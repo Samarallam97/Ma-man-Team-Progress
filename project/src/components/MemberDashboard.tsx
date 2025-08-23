@@ -7,6 +7,7 @@ import {
   CheckCircle,
   XCircle,
   AlertCircle,
+  PauseCircle,
 } from 'lucide-react';
 import { Member, GoalStatusType } from '../types/index';
 
@@ -37,6 +38,8 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ member }) => {
         return <XCircle className="text-red-500" size={24} />;
       case 'in_progress':
         return <AlertCircle className="text-amber-500" size={24} />;
+      case 'break':
+        return <PauseCircle className="text-red-500" size={24} />;
       default:
         return <AlertCircle className="text-gray-500" size={24} />;
     }
@@ -50,6 +53,8 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ member }) => {
         return 'Goal Not Met';
       case 'in_progress':
         return 'In Progress';
+      case 'break':
+        return 'Break';
       default:
         return 'Unknown';
     }
@@ -152,7 +157,22 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ member }) => {
               </div>
             </div>
           </div>
+
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">Off Weeks Number</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">
+                  {member.offWeekNumbers}
+                </p>
+              </div>
+              <div className="p-3 bg-red-100 rounded-lg">
+                <PauseCircle className="text-red-600" size={24} />
+              </div>
+            </div>
+          </div>
         </div>
+
 
         {/* Weekly Goal Progress */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">

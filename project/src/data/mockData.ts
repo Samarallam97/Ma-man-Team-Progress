@@ -13,7 +13,7 @@ export function useTeamsData() {
           name: setTeamName(team.name),
           members: team.members.map(member => ({
             ...member,
-            goalStatus: calculateGoalStatus(member.lastWeekHours),
+            goalStatus: calculateGoalStatus(member.lastWeekHours , member.goalStatus),
           }))
         }));
         setTeams(mappedData);
@@ -26,7 +26,8 @@ export function useTeamsData() {
   return { teamsData };
 }
 
-function calculateGoalStatus(hours: number) {
+function calculateGoalStatus(hours: number , goalStatus : string) {
+  if(goalStatus == "break") return GOAL_STATUS.BREAK;
   if (hours < 15) return GOAL_STATUS.NOT_ACHIEVED;
   if (hours < 25) return GOAL_STATUS.IN_PROGRESS;
   return GOAL_STATUS.ACHIEVED;

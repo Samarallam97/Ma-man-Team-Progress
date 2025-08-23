@@ -9,7 +9,9 @@ export const TEAMS = {
 export const GOAL_STATUS = {
   ACHIEVED: 'achieved',
   NOT_ACHIEVED: 'not_achieved',
-  IN_PROGRESS: 'in_progress'
+  IN_PROGRESS: 'in_progress',
+  BREAK: 'break'
+
 } as const;
 
 export type TeamType = typeof TEAMS[keyof typeof TEAMS];
